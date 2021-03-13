@@ -1,0 +1,51 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "cppbuild",
+			"label": "Build Debug",
+			"command": "./dev/build.sh",
+			"args": [
+				"debug",
+			],
+			"options": {
+				"cwd": "${workspaceFolder}"
+			},
+			"problemMatcher": [
+				"$gcc"
+			],
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			}
+		},
+		{
+			"type": "cppbuild",
+			"label": "Build Release",
+			"command": "./dev/build.sh",
+			"args": [
+				"release",
+			],
+			"options": {
+				"cwd": "${workspaceFolder}"
+			},
+			"problemMatcher": [
+				"$gcc"
+			],
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			}
+		},
+		{
+			"label": "Initialize Project",
+			"type": "shell",
+			"command": "./dev/init.sh",
+			"presentation": {
+			  "reveal": "always",
+			  "panel": "new"
+			},
+			"runOptions": { "runOn": "folderOpen" }
+		}
+	]
+}

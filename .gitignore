@@ -1,0 +1,9 @@
+# OSX stuff
+*.DS_Store
+
+# Dependnencis
+dev/premake5
+
+# Build files
+build/*
+!build/premake5.lua
