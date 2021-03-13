@@ -3,9 +3,14 @@
 #include <filesystem>
 #include <fstream>
 
+// !Accessor hack for m_Artboards
+#define private public
 #include "file.hpp"
+#define private private
+
 #include "no_op_renderer.hpp"
 #include "animation/animation.hpp"
+
 
 namespace fs = std::filesystem;
 
@@ -53,7 +58,7 @@ int main(int argc, char *argv[])
     // !1. The app should output the number and names of artboards in the file
     // rive::File::m_Artboards is private to answer question 1 we will need to 
     // manually deserialize numArtboards or hack the API
-    const size_t numArtboards = 1;
+    const size_t numArtboards = file->m_Artboards.size();
     std::cout << numArtboards << " Artboard(s):" << std::endl;
     for (size_t i = 0; i < numArtboards; i++)
     {
@@ -61,7 +66,8 @@ int main(int argc, char *argv[])
         auto seperator = [](int i = 0) { return (i == 0) ? "├──" : "│   "; };
 
         // Artboard index and name and object count
-        auto* artboard = file->artboard();
+        std::string name = file->m_Artboards[i]->name();
+        auto* artboard = file->artboard(name);
         std::cout << icon(i, numArtboards) << "[" << i << "] " << artboard->name() << ":" << std::endl;
 
         // !2. The number and names of all animations
